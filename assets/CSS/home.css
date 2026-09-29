@@ -1,0 +1,247 @@
+.home-page {
+  min-height: 100vh;
+  background: #09090b;
+  color: #f8f8f8;
+  opacity: 0;
+  animation: page-in 0.55s forwards;
+}
+
+.home-nav {
+  display: flex;
+  height: 92px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.home-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+}
+
+.home-sun {
+  width: 34px;
+  height: 34px;
+  color: #f6a900;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.home-links {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.home-links a {
+  color: #c7c8cf;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.home-links a:hover {
+  color: #f6a900;
+}
+
+.home-links .home-cta {
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: #fff;
+  color: #111;
+  font-weight: 700;
+}
+
+.home-links form {
+  margin: 0;
+}
+
+.home-logout {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #c7c8cf;
+  font: inherit;
+  cursor: pointer;
+}
+
+.home-logout:hover {
+  color: #f6a900;
+}
+
+.home-hero {
+  display: grid;
+  min-height: calc(100vh - 92px);
+  max-width: 1640px;
+  grid-template-columns: 1fr 1.02fr;
+  align-items: center;
+  gap: 5%;
+  margin: 0 auto;
+  padding: 7vh 6% 8vh;
+}
+
+.home-copy .eyebrow {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid rgba(246, 169, 0, 0.3);
+  border-radius: 999px;
+  background: rgba(246, 169, 0, 0.08);
+  color: #f6b51d;
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-copy h1 {
+  margin: 28px 0 22px;
+  font-size: clamp(54px, 6.5vw, 106px);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+}
+
+.home-copy h1 span {
+  display: block;
+  background: linear-gradient(95deg, #ffc21c, #f47b16);
+  background-clip: text;
+  color: transparent;
+}
+
+.home-copy p {
+  max-width: 550px;
+  color: #a5a6af;
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.home-action {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 17px 27px;
+  border-radius: 999px;
+  background: #f6a900;
+  color: #111;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 10px 35px rgba(246, 169, 0, 0.17);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.home-action:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(246, 169, 0, 0.26);
+}
+
+.home-photo {
+  position: relative;
+  height: 68vh;
+  min-height: 540px;
+  max-height: 750px;
+  overflow: hidden;
+  border-radius: 26px;
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.55), transparent 55%),
+    url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=85")
+      center / cover;
+  animation: photo-arrive 1s both;
+}
+
+.home-metric {
+  position: absolute;
+  bottom: 28px;
+  left: 28px;
+  min-width: 260px;
+  padding: 20px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  background: rgba(25, 27, 30, 0.9);
+  backdrop-filter: blur(16px);
+}
+
+.home-metric small {
+  color: #aaa;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-metric strong {
+  display: block;
+  margin: 6px 0 14px;
+  font-size: 24px;
+}
+
+.home-metric span {
+  color: #30d597;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .home-nav {
+    height: 76px;
+    padding: 0 5%;
+  }
+
+  .home-links {
+    gap: 14px;
+  }
+
+  .home-links > a:not(.home-cta) {
+    display: none;
+  }
+
+  .home-hero {
+    grid-template-columns: 1fr;
+    padding: 9vh 7%;
+  }
+
+  .home-copy h1 {
+    font-size: clamp(56px, 12vw, 90px);
+  }
+
+  .home-photo {
+    height: 55vh;
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-brand {
+    font-size: 14px;
+  }
+
+  .home-sun {
+    width: 28px;
+    height: 28px;
+  }
+
+  .home-links .home-cta {
+    padding: 11px 16px;
+  }
+
+  .home-photo {
+    height: 45vh;
+    min-height: 340px;
+  }
+
+  .home-metric {
+    bottom: 15px;
+    left: 15px;
+    min-width: 220px;
+  }
+}
+
+
+.home-page.auth-nav-leave {
+  pointer-events: none;
+  animation: app-slide-left 0.46s cubic-bezier(0.7, 0, 0.3, 1) both;
+}
