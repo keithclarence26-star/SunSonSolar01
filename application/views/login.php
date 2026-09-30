@@ -55,7 +55,7 @@
               name="email"
               placeholder="Email Address"
               aria-label="Email address"
-              value="<?= set_value('email') ?>"
+              value="<?= html_escape(set_value('email')) ?>"
               autocomplete="email"
               required
             >

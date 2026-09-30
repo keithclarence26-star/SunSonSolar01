@@ -40,9 +40,13 @@
           Industrial-grade solar arrays for residential architecture.
           Convert sunlight into decentralized energy and lasting value.
         </p>
-        <a class="home-action" href="<?= site_url('register') ?>" data-auth-transition>
-          Calculate Output
-        </a>
+        <?php if ($this->session->userdata('user_id')): ?>
+          <p class="home-user">Connected as <?= html_escape($this->session->userdata('user_name')) ?>.</p>
+        <?php else: ?>
+          <a class="home-action" href="<?= site_url('register') ?>" data-auth-transition>
+            Calculate Output
+          </a>
+        <?php endif; ?>
       </section>
 
       <div
@@ -57,6 +61,24 @@
         </div>
       </div>
     </main>
+
+    <section class="home-details" aria-label="Solar platform details">
+      <article id="technology">
+        <span>01</span>
+        <h2>Technology</h2>
+        <p>High-efficiency panels and real-time monitoring turn every hour of daylight into clear, usable data.</p>
+      </article>
+      <article id="infrastructure">
+        <span>02</span>
+        <h2>Infrastructure</h2>
+        <p>Purpose-built installation and dependable components keep your array connected and producing.</p>
+      </article>
+      <article id="economics">
+        <span>03</span>
+        <h2>Economics</h2>
+        <p>Track energy generation, understand your output, and make informed decisions about your investment.</p>
+      </article>
+    </section>
 
     <script src="<?= base_url('assets/JS/auth-transition.js') ?>"></script>
   </body>
