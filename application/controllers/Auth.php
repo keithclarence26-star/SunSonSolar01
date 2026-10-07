@@ -38,6 +38,21 @@ class Auth extends CI_Controller
             'trim|required|min_length[2]|max_length[80]'
         );
         $this->form_validation->set_rules(
+            'birth_date',
+            'Birth date',
+            'trim|required|callback_valid_birth_date'
+        );
+        $this->form_validation->set_rules(
+            'gender',
+            'Gender',
+            'required|in_list[female,male,prefer_not_to_say]'
+        );
+        $this->form_validation->set_rules(
+            'phone_number',
+            'Phone number',
+            'trim|required|min_length[7]|max_length[25]|callback_valid_phone_number'
+        );
+        $this->form_validation->set_rules(
             'email',
             'Email address',
             'trim|required|valid_email|max_length[190]|is_unique[users.email]'
@@ -76,7 +91,10 @@ class Auth extends CI_Controller
             'first_name' => $this->input->post('first_name', TRUE),
             'middle_name' => $this->input->post('middle_name', TRUE) ?: NULL,
             'last_name' => $this->input->post('last_name', TRUE),
+            'birth_date' => $this->input->post('birth_date', TRUE),
+            'gender' => $this->input->post('gender', TRUE),
             'email' => strtolower(trim($this->input->post('email', TRUE))),
+            'phone_number' => trim($this->input->post('phone_number', TRUE)),
             'password' => password_hash(
                 $this->input->post('password'),
                 PASSWORD_DEFAULT
@@ -107,6 +125,35 @@ class Auth extends CI_Controller
             'Your account is ready. Please log in.'
         );
         redirect('login');
+    }
+
+    public function valid_birth_date($birth_date)
+    {
+        $date = DateTime::createFromFormat('Y-m-d', $birth_date);
+        $is_valid = $date && $date->format('Y-m-d') === $birth_date
+            && $date <= new DateTime('today');
+
+        if (!$is_valid) {
+            $this->form_validation->set_message(
+                'valid_birth_date',
+                'The {field} field must be a valid date in the past.'
+            );
+        }
+
+        return $is_valid;
+    }
+
+    public function valid_phone_number($phone_number)
+    {
+        if (!preg_match('/^[0-9+() -]+$/', $phone_number)) {
+            $this->form_validation->set_message(
+                'valid_phone_number',
+                'The {field} field may contain only digits, spaces, and +, (, or ).'
+            );
+            return FALSE;
+        }
+
+        return TRUE;
     }
 
     public function login()

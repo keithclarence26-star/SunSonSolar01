@@ -74,6 +74,22 @@
               value="<?= html_escape(set_value('middle_name')) ?>"
               autocomplete="additional-name"
             >
+            <div class="auth-row">
+              <input
+                type="date"
+                name="birth_date"
+                aria-label="Birth date"
+                value="<?= html_escape(set_value('birth_date')) ?>"
+                autocomplete="bday"
+                required
+              >
+              <select name="gender" aria-label="Gender" required>
+                <option value="" disabled <?= set_select('gender', '', TRUE) ?>>Gender</option>
+                <option value="female" <?= set_select('gender', 'female') ?>>Female</option>
+                <option value="male" <?= set_select('gender', 'male') ?>>Male</option>
+                <option value="prefer_not_to_say" <?= set_select('gender', 'prefer_not_to_say') ?>>Prefer not to say</option>
+              </select>
+            </div>
             <input
               type="email"
               name="email"
@@ -81,6 +97,17 @@
               aria-label="Email address"
               value="<?= html_escape(set_value('email')) ?>"
               autocomplete="email"
+              required
+            >
+            <input
+              type="tel"
+              name="phone_number"
+              placeholder="Phone Number"
+              aria-label="Phone number"
+              value="<?= html_escape(set_value('phone_number')) ?>"
+              autocomplete="tel"
+              inputmode="tel"
+              pattern="[0-9+() -]{7,25}"
               required
             >
             <input
