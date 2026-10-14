@@ -17,15 +17,15 @@
             <svg class="brand-sun" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="8"></circle><path d="M24 2v8M24 38v8M2 24h8m28 0h8M8.5 8.5l5.7 5.7m19.6 19.6 5.7 5.7m0-31-5.7 5.7m-19.6 19.6-5.7 5.7"></path></svg>
             SUN SON SOLAR
           </div>
-          <h2>Power your potential.</h2>
-          <p>Join the network of decentralized energy producers reshaping the grid.</p>
+          <h2>Good to have you back.</h2>
+          <p>Sign in securely to your Sun Son Solar customer or employee account.</p>
         </div>
       </aside>
 
       <main class="auth-main">
         <section class="auth-form-wrap" aria-labelledby="login-title">
           <h1 id="login-title">Welcome Back</h1>
-          <p class="auth-subtitle">Access your solar array telemetry.</p>
+          <p class="auth-subtitle">Customer and employee secure access.</p>
 
           <?php if ($this->session->flashdata('success')): ?>
             <div class="auth-message" role="status">
@@ -53,7 +53,7 @@
             <input
               type="email"
               name="email"
-              placeholder="Email Address"
+              placeholder="Email address"
               aria-label="Email address"
               value="<?= set_value('email') ?>"
               autocomplete="email"
@@ -67,15 +67,12 @@
               autocomplete="current-password"
               required
             >
-            <a class="auth-forgot" href="#" onclick="return false">
-              Forgot Configuration?
-            </a>
-            <button class="auth-submit" type="submit">Authenticate</button>
+            <button class="auth-submit" type="submit">Log in securely</button>
           </form>
 
           <p class="auth-switch">
-            New to the grid?
-            <a href="<?= site_url('register') ?>" data-auth-transition>Deploy Node</a>
+            New customer?
+            <a href="<?= site_url('register') ?>" data-auth-transition>Create an account</a>
           </p>
         </section>
       </main>

@@ -17,15 +17,15 @@
             <svg class="brand-sun" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="8"></circle><path d="M24 2v8M24 38v8M2 24h8m28 0h8M8.5 8.5l5.7 5.7m19.6 19.6 5.7 5.7m0-31-5.7 5.7m-19.6 19.6-5.7 5.7"></path></svg>
             SUN SON SOLAR
           </div>
-          <h2>Power your potential.</h2>
-          <p>Join the network of decentralized energy producers reshaping the grid.</p>
+          <h2>Make every sunny day count.</h2>
+          <p>Create your customer account to plan your move to clean, dependable solar energy.</p>
         </div>
       </aside>
 
       <main class="auth-main">
         <section class="auth-form-wrap" aria-labelledby="register-title">
-          <h1 id="register-title">Initialize Array</h1>
-          <p class="auth-subtitle">Register to begin capturing solar yield.</p>
+          <h1 id="register-title">Create your account</h1>
+          <p class="auth-subtitle">Customer registration for Sun Son Solar.</p>
 
           <?php if ($this->session->flashdata('error')): ?>
             <div class="auth-message" role="alert">
@@ -101,26 +101,12 @@
               required
             >
 
-            <select name="role" id="role" aria-label="Account type" onchange="toggleDepartment()">
-              <option value="customer">Customer</option>
-              <option value="employee">Employee</option>
-            </select>
-
-            <div id="departmentField" hidden>
-              <input
-                type="text"
-                name="department"
-                id="department"
-                placeholder="Department (employees)"
-                aria-label="Department"
-              >
-            </div>
-
-            <button class="auth-submit" type="submit">Initialize Node</button>
+            <p class="auth-note">Employee accounts are created by HR or an administrator. Contact your administrator if you need employee access.</p>
+            <button class="auth-submit" type="submit">Create customer account</button>
           </form>
 
           <p class="auth-switch">
-            System already active?
+            Already have an account?
             <a href="<?= site_url('login') ?>" data-auth-transition>Log In</a>
           </p>
         </section>
@@ -128,18 +114,6 @@
     </div>
 
     <script src="<?= base_url('assets/JS/auth-transition.js') ?>"></script>
-    <script>
-      function toggleDepartment() {
-        const isEmployee = document.getElementById("role").value === "employee";
-        const field = document.getElementById("departmentField");
-        const input = document.getElementById("department");
-
-        field.hidden = !isEmployee;
-        input.required = isEmployee;
-      }
-
-      toggleDepartment();
-    </script>
   </body>
 </html>
 
