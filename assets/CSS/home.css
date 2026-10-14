@@ -137,6 +137,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   line-height: 1.6;
 }
 
+.home-user {
+  margin-top: 26px;
+  color: #f6b51d;
+  font-weight: 700;
+}
+
 .home-action {
   display: inline-block;
   margin-top: 22px;
@@ -230,6 +236,38 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
   font-size: 14px;
 }
 
+.home-details {
+  display: grid;
+  max-width: 1640px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 0 auto;
+  padding: 0 6% 9vh;
+}
+
+.home-details article {
+  scroll-margin-top: 110px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  background: #121215;
+}
+
+.home-details span {
+  color: #f6a900;
+  font-weight: 800;
+}
+
+.home-details h2 {
+  margin: 16px 0 10px;
+}
+
+.home-details p {
+  margin: 0;
+  color: #a5a6af;
+  line-height: 1.6;
+}
+
 @media (max-width: 900px) {
   .home-nav {
     height: 76px;
@@ -272,6 +310,14 @@ html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 
   .home-links .home-cta {
     padding: 11px 16px;
+  }
+
+  .home-nav {
+    gap: 12px;
+  }
+
+  .home-links {
+    flex-shrink: 0;
   }
 
   .home-photo {

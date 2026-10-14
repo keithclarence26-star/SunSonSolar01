@@ -51,7 +51,7 @@
                 name="first_name"
                 placeholder="First Name"
                 aria-label="First name"
-                value="<?= set_value('first_name') ?>"
+                value="<?= html_escape(set_value('first_name')) ?>"
                 autocomplete="given-name"
                 required
               >
@@ -60,7 +60,7 @@
                 name="last_name"
                 placeholder="Last Name"
                 aria-label="Last name"
-                value="<?= set_value('last_name') ?>"
+                value="<?= html_escape(set_value('last_name')) ?>"
                 autocomplete="family-name"
                 required
               >
@@ -71,7 +71,7 @@
               name="middle_name"
               placeholder="Middle Name (optional)"
               aria-label="Middle name"
-              value="<?= set_value('middle_name') ?>"
+              value="<?= html_escape(set_value('middle_name')) ?>"
               autocomplete="additional-name"
             >
             <input
@@ -79,7 +79,7 @@
               name="email"
               placeholder="Email Address"
               aria-label="Email address"
-              value="<?= set_value('email') ?>"
+              value="<?= html_escape(set_value('email')) ?>"
               autocomplete="email"
               required
             >
