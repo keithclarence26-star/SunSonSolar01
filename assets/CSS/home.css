@@ -6,6 +6,11 @@
   animation: page-in 0.55s forwards;
 }
 
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+.home-section[id] { scroll-margin-top: 24px; }
+
+.home-page { font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+
 .home-nav {
   display: flex;
   height: 92px;
@@ -43,13 +48,15 @@
 }
 
 .home-links a {
+  display: inline-block;
   color: #c7c8cf;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .home-links a:hover {
   color: #f6a900;
+  transform: translateY(-2px);
 }
 
 .home-links .home-cta {
@@ -58,6 +65,13 @@
   background: #fff;
   color: #111;
   font-weight: 700;
+  box-shadow: 0 5px 18px rgba(246, 169, 0, 0.12);
+}
+
+.home-links .home-cta:hover {
+  background: #f6a900;
+  color: #111;
+  box-shadow: 0 10px 26px rgba(246, 169, 0, 0.24);
 }
 
 .home-links form {
@@ -75,6 +89,7 @@
 
 .home-logout:hover {
   color: #f6a900;
+  transform: translateY(-2px);
 }
 
 .home-hero {
@@ -139,14 +154,44 @@
   text-decoration: none;
   box-shadow: 0 10px 35px rgba(246, 169, 0, 0.17);
   transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.25s ease,
+    background 0.25s ease;
 }
 
 .home-action:hover {
   transform: translateY(-3px);
   box-shadow: 0 14px 40px rgba(246, 169, 0, 0.26);
 }
+
+.home-action:active, .home-links .home-cta:active { transform: translateY(0) scale(0.98); }
+.home-links a:focus-visible, .home-action:focus-visible, .home-secondary:focus-visible, .home-footer a:focus-visible, .home-logout:focus-visible {
+  outline: 3px solid rgba(246, 169, 0, 0.7);
+  outline-offset: 4px;
+}
+
+.home-secondary { display: inline-block; margin: 22px 0 0 20px; color: #e8e8e8; text-decoration: underline; text-underline-offset: 4px; transition: color .25s ease, transform .25s ease; }
+.home-secondary:hover { color: #f6bd3e; transform: translateX(3px); }
+.home-section { max-width: 1200px; margin: 0 auto; padding: 92px 6%; }
+.home-section h2 { max-width: 760px; margin: 18px 0; font-size: clamp(34px, 4.5vw, 60px); line-height: 1.05; letter-spacing: -.04em; }
+.home-section > p { max-width: 720px; color: #b7b7bd; font-size: 18px; line-height: 1.7; }
+.benefits, .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.benefits article, .service-grid article { padding: 28px; border: 1px solid #29292d; border-radius: 18px; background: #141416; }
+.benefits article > span { color: #f6a900; font-weight: 800; }
+.benefits h3, .service-grid h3 { margin: 22px 0 10px; font-size: 22px; }
+.benefits p, .service-grid p, .quote p { color: #aaaab2; line-height: 1.7; }
+.services { max-width: none; background: #111113; }
+.services > .eyebrow, .services > h2, .service-grid { max-width: 1060px; margin-left: auto; margin-right: auto; }
+.quote { text-align: center; }
+.quote h2, .quote p { margin-right: auto; margin-left: auto; }
+.faq details { max-width: 850px; margin: 12px 0; padding: 20px 22px; border: 1px solid #29292d; border-radius: 12px; background: #141416; }
+.faq summary { color: #f3f3f4; font-weight: 700; cursor: pointer; }
+.faq details p { margin-bottom: 0; color: #aaaab2; line-height: 1.65; }
+.home-footer { padding: 48px 6%; border-top: 1px solid #29292d; text-align: center; color: #aaaab2; }
+.home-footer .home-brand { justify-content: center; }
+.home-footer a { display: inline-block; color: #f6bd3e; transition: color .25s ease, transform .25s ease; }
+.home-footer a:hover { color: #ffd576; transform: translateY(-2px); }
+.home-footer small { display: block; margin-top: 24px; }
 
 .home-photo {
   position: relative;
@@ -250,11 +295,7 @@
     height: 55vh;
     min-height: 420px;
   }
-
-  .home-details {
-    grid-template-columns: 1fr;
-    padding: 0 7% 8vh;
-  }
+  .benefits, .service-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 520px) {
@@ -294,5 +335,17 @@
 
 .home-page.auth-nav-leave {
   pointer-events: none;
-  animation: app-slide-left 0.46s cubic-bezier(0.7, 0, 0.3, 1) both;
+  animation: app-slide-left 0.48s cubic-bezier(0.7, 0, 0.3, 1) both;
+}
+
+.home-page.auth-nav-leave .home-hero,
+.home-page.auth-nav-leave .home-section,
+.home-page.auth-nav-leave .home-nav,
+.home-page.auth-nav-leave .home-footer {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .home-page.auth-nav-leave { animation-duration: 0.22s !important; }
 }

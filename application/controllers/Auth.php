@@ -52,26 +52,11 @@ class Auth extends CI_Controller
             'Password confirmation',
             'required|matches[password]'
         );
-        $this->form_validation->set_rules(
-            'role',
-            'Account type',
-            'required|in_list[customer,employee]'
-        );
-
-        if ($this->input->post('role', TRUE) === 'employee') {
-            $this->form_validation->set_rules(
-                'department',
-                'Department',
-                'trim|required|max_length[100]'
-            );
-        }
-
         if (!$this->form_validation->run()) {
             $this->load->view('register');
             return;
         }
 
-        $role = $this->input->post('role', TRUE);
         $account = array(
             'first_name' => $this->input->post('first_name', TRUE),
             'middle_name' => $this->input->post('middle_name', TRUE) ?: NULL,
@@ -81,10 +66,10 @@ class Auth extends CI_Controller
                 $this->input->post('password'),
                 PASSWORD_DEFAULT
             ),
-            'role' => $role,
-            'department' => $role === 'employee'
-                ? trim($this->input->post('department', TRUE))
-                : NULL
+            // Public self-registration is customer-only. Employee accounts
+            // must be provisioned by HR or an administrator.
+            'role' => 'customer',
+            'department' => NULL
         );
 
         if (!$this->db->insert('users', $account)) {

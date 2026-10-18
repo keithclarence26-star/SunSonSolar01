@@ -82,13 +82,17 @@ body.auth-page {
   text-decoration: none;
   backdrop-filter: blur(12px);
   transition:
-    background 0.2s,
-    transform 0.2s;
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .visual-home:hover {
   background: #252529;
-  transform: translateX(-3px);
+  border-color: rgba(246, 169, 0, 0.55);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.22);
+  transform: translateX(-4px);
 }
 
 .visual-copy {
@@ -160,6 +164,8 @@ body.auth-page {
   text-align: center;
 }
 
+.auth-note { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+
 .auth-fields {
   display: grid;
   gap: 18px;
@@ -215,15 +221,21 @@ body.auth-page {
   font-weight: 700;
   cursor: pointer;
   transition:
-    transform 0.2s,
-    box-shadow 0.2s,
-    filter 0.2s;
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
 }
 
 .auth-submit:hover {
   filter: brightness(1.04);
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(246, 169, 0, 0.2);
+}
+
+.auth-submit:active { transform: translateY(0) scale(0.985); }
+.auth-submit:focus-visible, .visual-home:focus-visible, .auth-switch a:focus-visible {
+  outline: 3px solid rgba(246, 169, 0, 0.65);
+  outline-offset: 4px;
 }
 
 .auth-switch {
@@ -429,7 +441,7 @@ body.auth-page {
 
 /* Move the complete screen left before navigating to the next route. */
 .auth-nav-leave .auth-shell {
-  animation: app-slide-left 0.46s cubic-bezier(0.7, 0, 0.3, 1) both;
+  animation: app-slide-left 0.48s cubic-bezier(0.7, 0, 0.3, 1) both;
 }
 
 .auth-nav-leave .auth-visual {
@@ -450,4 +462,23 @@ body.auth-page {
     opacity: 0;
     transform: translateX(-7vw);
   }
+}
+
+.navigation-curtain {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, #111113 0%, #20201f 48%, #f6a900 100%);
+  transform: translateX(105%);
+  animation: curtain-arrive 0.52s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes curtain-arrive {
+  to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation-curtain { animation-duration: 0.22s !important; }
+  .auth-nav-leave .auth-shell { animation-duration: 0.22s !important; }
 }
