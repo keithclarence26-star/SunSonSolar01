@@ -38,6 +38,31 @@ class Auth extends CI_Controller
             'trim|required|min_length[2]|max_length[80]'
         );
         $this->form_validation->set_rules(
+            'birthdate',
+            'Birthdate',
+            'required|callback_valid_birthdate'
+        );
+        $this->form_validation->set_rules(
+            'gender',
+            'Gender',
+            'required|in_list[Female,Male,Prefer not to say]'
+        );
+        $this->form_validation->set_rules(
+            'phone',
+            'Phone number',
+            'trim|required|max_length[32]'
+        );
+        $this->form_validation->set_rules(
+            'address',
+            'Address',
+            'trim|required|max_length[255]'
+        );
+        $this->form_validation->set_rules(
+            'username',
+            'Username',
+            'trim|required|min_length[3]|max_length[80]|alpha_dash|is_unique[users.username]'
+        );
+        $this->form_validation->set_rules(
             'email',
             'Email address',
             'trim|required|valid_email|max_length[190]|is_unique[users.email]'
@@ -61,6 +86,11 @@ class Auth extends CI_Controller
             'first_name' => $this->input->post('first_name', TRUE),
             'middle_name' => $this->input->post('middle_name', TRUE) ?: NULL,
             'last_name' => $this->input->post('last_name', TRUE),
+            'birthdate' => $this->input->post('birthdate', TRUE),
+            'gender' => $this->input->post('gender', TRUE),
+            'phone' => $this->input->post('phone', TRUE),
+            'address' => $this->input->post('address', TRUE),
+            'username' => $this->input->post('username', TRUE),
             'email' => strtolower(trim($this->input->post('email', TRUE))),
             'password' => password_hash(
                 $this->input->post('password'),
@@ -94,6 +124,17 @@ class Auth extends CI_Controller
         redirect('login');
     }
 
+    public function valid_birthdate($value)
+    {
+        $date = DateTime::createFromFormat('!Y-m-d', $value);
+        $valid = $date && $date->format('Y-m-d') === $value && $date <= new DateTime('today');
+
+        if (!$valid) {
+            $this->form_validation->set_message('valid_birthdate', 'Enter a valid birthdate that is not in the future.');
+        }
+
+        return $valid;
+    }
     public function login()
     {
         if ($this->session->userdata('user_id')) {
